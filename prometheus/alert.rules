@@ -29,15 +29,6 @@ groups:
       summary: Prometheus too many restarts (instance {{ $labels.instance }})
       description: "Prometheus has restarted more than twice in the last 15 minutes. It might be crashlooping.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-  - alert: PrometheusAlertmanagerJobMissing
-    expr: absent(up{job="alertmanager"})
-    for: 0m
-    labels:
-      severity: warning
-    annotations:
-      summary: Prometheus AlertManager job missing (instance {{ $labels.instance }})
-      description: "A Prometheus AlertManager job has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
   - alert: PrometheusAlertmanagerConfigurationReloadFailure
     expr: alertmanager_config_last_reload_successful != 1
     for: 0m
@@ -97,7 +88,7 @@ groups:
       description: "Docker host is under high load, the avg load 1m is at {{ $value}}. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
 
   - alert: high_memory_load
-    expr: (sum(node_memory_MemTotal_bytes) - sum(node_memory_MemFree_bytes + node_memory_Buffers_bytes + node_memory_Cached_bytes) ) / sum(node_memory_MemTotal_bytes) * 100 > 85
+    expr: (sum(node_memory_MemTotal_bytes) - sum(node_memory_MemFree_bytes + node_memory_Buffers_bytes + node_memory_Cached_bytes) ) / sum(node_memory_MemTotal_bytes) * 100 > 75
     for: 30s
     labels:
       severity: warning

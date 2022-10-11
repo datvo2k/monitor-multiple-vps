@@ -1,0 +1,27 @@
+# this section is for google-chat
+# route:
+#     group_wait: 15s
+#     group_interval: 30s
+#     repeat_interval: 1m
+#     group_by: ["alertname", "severity"]
+#     # A default receiver
+#     receiver: alerts
+
+# receivers:
+#     - name: 'alerts'
+#       webhook_configs:
+#       - url: 'http://calert:6000/dispatch'
+
+# this section is for telegram
+route:
+  group_by: ['alertname']
+  group_wait: 15s
+  group_interval: 30s
+  repeat_interval: 1m
+  receiver: 'telepush'  # see below
+
+# telepush configuration here
+receivers:
+- name: 'telepush'
+  webhook_configs:
+  - url: 'https://telepush.dev/api/inlets/alertmanager/d91e45'

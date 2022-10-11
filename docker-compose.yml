@@ -31,21 +31,21 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  # alertmanager:
-  #   image: prom/alertmanager:v0.24.0
-  #   container_name: alertmanager
-  #   volumes:
-  #     - ./alertmanager:/etc/alertmanager
-  #   command:
-  #     # - '--config.file=/etc/alertmanager/config.yml'
-  #     - '--storage.path=/alertmanager'
-  #   restart: unless-stopped
-  #   expose:
-  #     - 9093
-  #   networks:
-  #     - monitor-net
-  #   labels:
-  #     org.label-schema.group: "monitoring"
+  alertmanager:
+    image: prom/alertmanager:v0.24.0
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    restart: unless-stopped
+    ports:
+      - 9093:9093
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
 
   nodeexporter:
     image: prom/node-exporter:v1.4.0
@@ -114,4 +114,15 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+
+  # calert:
+  #   container_name: calert
+  #   image: ghcr.io/mr-karan/calert:latest
+  #   ports:
+  #     - 6000:6000
+  #   command:
+  #     - "--config=./config.toml"
+  #   volumes:
+  #     - ./config.googlechat.toml:/app/config.toml
+  #   restart: unless-stopped
 
