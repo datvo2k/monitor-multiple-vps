@@ -24,4 +24,4 @@ route:
 receivers:
 - name: 'telepush'
   webhook_configs:
-  - url: 'https://telepush.dev/api/inlets/alertmanager/d91e45'
+  - url: 'https://telepush.dev/api/inlets/alertmanager/token-here'
