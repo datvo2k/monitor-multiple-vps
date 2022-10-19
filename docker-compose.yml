@@ -94,8 +94,9 @@ services:
     env_file:
     - ./grafana/config.monitoring
     volumes:
-      # - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./custom.ini:/etc/grafana/grafana.ini
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -125,4 +126,12 @@ services:
   #   volumes:
   #     - ./config.googlechat.toml:/app/config.toml
   #   restart: unless-stopped
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./nginx/grafana.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - grafana
 

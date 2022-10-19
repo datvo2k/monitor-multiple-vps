@@ -1,6 +1,3 @@
+# Monitor linux host with Prometheus, Grafana, AlertManager and Node Exporter.
 
-## Start 
-docker compose up - d
 
-## Stop
-docker compose down
