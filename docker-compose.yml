@@ -94,7 +94,7 @@ services:
     env_file:
     - ./grafana/config.monitoring
     volumes:
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      # - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./custom.ini:/etc/grafana/grafana.ini
     restart: unless-stopped
